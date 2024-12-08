@@ -11,6 +11,13 @@ dependencies:
     sdk: flutter
   flutter_islamic_icons: ^1.0.2
   auto_animated: ^3.2.0
+  searchable_listview: ^2.16.0
+  http: ^1.2.2
+  flutter_bloc: ^8.1.6
+  sqflite: ^2.4.1
+  bloc: ^8.1.4
+  equatable: ^2.0.7
+  path: ^1.9.1
 
 dev_dependencies:
   flutter_test:

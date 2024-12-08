@@ -1,18 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ilm_ki_khajana/modules/home/home.dart';
+import 'package:ilm_ki_khajana/modules/irshadaat/bloc/irshadate_bloc.dart';
+import 'package:ilm_ki_khajana/modules/irshadaat/bloc/irshadate_event.dart';
+import 'package:ilm_ki_khajana/modules/irshadaat/services/database_helper.dart';
+import 'package:ilm_ki_khajana/modules/irshadaat/services/network_service.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  final IrshadateDbHelper dbHelper = IrshadateDbHelper();
+  final NetworkService networkService = NetworkService();
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<IrshadateBloc>(
+          create: (context) => IrshadateBloc(
+            dbHelper: dbHelper,
+            networkService: networkService,
+          )..add(FetchIrshadate()),
+        ),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
+      ),
     );
   }
 }

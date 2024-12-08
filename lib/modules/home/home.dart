@@ -3,7 +3,7 @@ import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_islamic_icons/flutter_islamic_icons.dart';
 import 'package:ilm_ki_khajana/error_screen.dart';
-import 'package:ilm_ki_khajana/modules/irshadaat/maula_ali.dart';
+import 'package:ilm_ki_khajana/modules/irshadaat/screens/irshadat_e_maula_ali.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     final items = [
       {
         'icon': Icons.video_library_sharp,
-        'label': 'Tafseer',
+        'label': 'Irshadat',
         'route': '/tafseer'
       },
       {
@@ -54,14 +54,17 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashbord'),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.mode_night))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: LiveGrid.options(
           options: const LiveOptions(
-            delay: Duration(milliseconds: 150),
-            showItemInterval: Duration(milliseconds: 150),
-            showItemDuration: Duration(milliseconds: 150),
+            delay: Duration(milliseconds: 100),
+            showItemInterval: Duration(milliseconds: 100),
+            showItemDuration: Duration(milliseconds: 250),
             visibleFraction: 0.05,
             reAnimateOnVisibility: true,
           ),
@@ -77,7 +80,7 @@ class HomeScreen extends StatelessWidget {
               opacity: animation,
               child: SlideTransition(
                 position: Tween<Offset>(
-                  begin: const Offset(0, -0.1),
+                  begin: const Offset(0, -0.3),
                   end: Offset.zero,
                 ).animate(animation),
                 child: _buildGridItem(context, item['icon'] as IconData,
@@ -97,35 +100,35 @@ class HomeScreen extends StatelessWidget {
         switch (route) {
           case '/naat':
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MaulaAli()));
+                MaterialPageRoute(builder: (context) => const IrshadateAliPage()));
             break;
           case '/tafseer':
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MaulaAli()));
+                MaterialPageRoute(builder: (context) => const IrshadateAliPage()));
             break;
           case '/dbs':
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MaulaAli()));
+                MaterialPageRoute(builder: (context) => const IrshadateAliPage()));
             break;
           case '/tasbih':
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MaulaAli()));
+                MaterialPageRoute(builder: (context) => const IrshadateAliPage()));
             break;
           case '/library':
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MaulaAli()),
+              MaterialPageRoute(builder: (context) => const IrshadateAliPage()),
             );
             break;
           case '/task':
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MaulaAli()),
+              MaterialPageRoute(builder: (context) => const IrshadateAliPage()),
             );
           case '/activity':
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MaulaAli()),
+              MaterialPageRoute(builder: (context) => const IrshadateAliPage()),
             );
             break;
           default:
@@ -138,7 +141,7 @@ class HomeScreen extends StatelessWidget {
         children: <Widget>[
           CircleAvatar(
             radius: 30.0,
-            backgroundColor: Colors.black,
+            backgroundColor: const Color.fromARGB(255, 7, 55, 95),
             child: Icon(
               icon,
               size: 30.0,
