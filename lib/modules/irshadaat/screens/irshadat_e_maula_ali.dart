@@ -17,13 +17,11 @@ class IrshadateAliPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: () {
-              // Trigger the sync event to refresh data
               context.read<IrshadateBloc>().add(SyncIrshadate());
             },
           ),
           IconButton(
             onPressed: () {
-              // Navigate to the Add Irshadate Page
               Navigator.push(
                 context,
                 MaterialPageRoute(

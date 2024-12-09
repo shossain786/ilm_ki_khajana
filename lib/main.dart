@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ilm_ki_khajana/modules/home/home.dart';
 import 'package:ilm_ki_khajana/modules/irshadaat/bloc/irshadate_bloc.dart';
 import 'package:ilm_ki_khajana/modules/irshadaat/bloc/irshadate_event.dart';
-import 'package:ilm_ki_khajana/modules/irshadaat/services/database_helper.dart';
 import 'package:ilm_ki_khajana/modules/irshadaat/services/network_service.dart';
 
 void main() {
@@ -11,7 +10,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final IrshadateDbHelper dbHelper = IrshadateDbHelper();
   final NetworkService networkService = NetworkService();
 
   MyApp({super.key});
@@ -20,11 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<IrshadateBloc>(
-          create: (context) => IrshadateBloc(
-            dbHelper: dbHelper,
-            networkService: networkService,
-          )..add(FetchIrshadate()),
+        BlocProvider(
+          create: (context) => IrshadateBloc(networkService: networkService)
+            ..add(FetchIrshadate()),
         ),
       ],
       child: const MaterialApp(

@@ -1,4 +1,3 @@
-// AddIrshadatePage.dart
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
@@ -17,7 +16,6 @@ class _AddIrshadatePageState extends State<AddIrshadatePage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _contentController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
-  final TextEditingController _dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,22 +59,6 @@ class _AddIrshadatePageState extends State<AddIrshadatePage> {
                 },
               ),
               const SizedBox(height: 16.0),
-              // Date Field
-              TextFormField(
-                controller: _dateController,
-                decoration: const InputDecoration(
-                  labelText: "Date",
-                  hintText: "YYYY-MM-DD",
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter a date";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16.0),
               // Submit Button
               ElevatedButton(
                 onPressed: () {
@@ -84,22 +66,20 @@ class _AddIrshadatePageState extends State<AddIrshadatePage> {
                     // Collect data from the form
                     final content = _contentController.text;
                     final category = _categoryController.text;
-                    final date = _dateController.text;
 
                     // Dispatch event to add new Irshadate data
                     context.read<IrshadateBloc>().add(
                           AddIrshadateEvent(
-                            // Use AddIrshadateEvent here
                             content: content,
                             category: category,
-                            date: date,
+                            date:
+                                "", // Date is handled automatically on the server
                           ),
                         );
 
                     // Clear fields after submission
                     _contentController.clear();
                     _categoryController.clear();
-                    _dateController.clear();
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("Data added successfully!")),
@@ -119,7 +99,6 @@ class _AddIrshadatePageState extends State<AddIrshadatePage> {
   void dispose() {
     _contentController.dispose();
     _categoryController.dispose();
-    _dateController.dispose();
     super.dispose();
   }
 }
