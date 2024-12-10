@@ -29,7 +29,7 @@ class NetworkService {
         headers: {"Content-Type": "application/json"},
         body: json.encode({
           "content": content,
-          "category": category,
+          "category": category
         }),
       );
 

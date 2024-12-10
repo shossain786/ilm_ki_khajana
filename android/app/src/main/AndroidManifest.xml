@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE"/>
     <uses-permission android:name="android.permission.READ_MEDIA_STORAGE"/>
     <application
-        android:label="ilm_ki_khajana"
+        android:label="ILM Ki Khajaza"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
