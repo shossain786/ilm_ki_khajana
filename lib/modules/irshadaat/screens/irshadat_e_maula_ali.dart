@@ -12,7 +12,7 @@ class IrshadateAliPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Irshadate Ali"),
+        title: const Text("Irshadat e Maula Ali(رضي الله عنه)"),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -51,6 +51,11 @@ class IrshadateAliPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final item = state.irshadate[index];
                 return ListTile(
+                  hoverColor: Colors.blue,
+                  dense: true,
+                  leading: const Icon(Icons.star),
+                  iconColor: Colors.yellow,
+                  style: ListTileStyle.drawer,
                   title: Text(item['content'] ?? "No Content"),
                   subtitle: Text(
                     "${item['category'] ?? "Unknown Category"} - ${item['date'] ?? "Unknown Date"}",
